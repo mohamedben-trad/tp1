@@ -4,8 +4,67 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Gestion de livres</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            padding: 20px;
+            text-align: center;
+        }
+
+        input[type="button"] {
+            padding: 10px 20px;
+            margin: 10px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        input[type="button"]:hover {
+            background-color: #45a049;
+        }
+
+        table {
+            width: 80%;
+            margin: 20px auto;
+            border-collapse: collapse;
+            background-color: white;
+            box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        th, td {
+            padding: 15px;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+        }
+
+        th {
+            background-color: #4CAF50;
+            color: white;
+        }
+
+        td {
+            background-color: #f9f9f9;
+        }
+
+        tr:hover {
+            background-color: #f1f1f1;
+        }
+
+        #table {
+            margin-top: 30px;
+        }
+
+        h1 {
+            color: #333;
+        }
+
+    </style>
 </head>
 <body>
+    <h1>Gestion de livres</h1>
     <input type="button" value="Ajouter Livre" onclick="ajouter()"><br>
     <input type="button" value="Supprimer Livre" onclick="supprimer()"><br>
     <input type="button" value="Afficher Livres" onclick="afficher()"><br>
@@ -22,7 +81,6 @@
             var prix = prompt("Prix :");
             if (titre && auteur && prix) { 
                 book.push({ titre, auteur, prix });
-              
             }
         }
 
@@ -42,10 +100,10 @@
             var ha = document.createElement("th");
             ha.textContent = "Auteur";
             var headerPrix = document.createElement("th");
-            headerPrix.textContent = "Prix"; // Correction ici
+            headerPrix.textContent = "Prix";
             h.appendChild(ht);
             h.appendChild(ha);
-            h.appendChild(headerPrix); // Correction ici
+            h.appendChild(headerPrix);
             table.appendChild(h);
 
             for (var i = 0; i < book.length; i++) {
@@ -69,8 +127,7 @@
             var title = prompt("Donner un titre à supprimer :");
             for (var i = 0; i < book.length; i++) {
                 if (book[i].titre === title) {
-                    book.splice(i, 1); // ysuprimi livre li hachti biha
-                   
+                    book.splice(i, 1); 
                     break; 
                 }
             }
@@ -89,7 +146,6 @@
                     if (na) book[i].auteur = na;
                     if (np) book[i].prix = np;
 
-                    
                     break; 
                 }
             }

@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gestion de livres</title>
+</head>
+<body>
+    <input type="button" value="Ajouter Livre" onclick="ajouter()"><br>
+    <input type="button" value="Supprimer Livre" onclick="supprimer()"><br>
+    <input type="button" value="Afficher Livres" onclick="afficher()"><br>
+    <input type="button" value="Modifier Livre" onclick="modif()"><br>
+
+    <div id="table"></div> 
+
+    <script>
+        var book = []; 
+
+        function ajouter() {
+            var titre = prompt("Titre :");
+            var auteur = prompt("Auteur :");
+            var prix = prompt("Prix :");
+            if (titre && auteur && prix) { 
+                book.push({ titre, auteur, prix });
+              
+            }
+        }
+
+        function afficher() {
+            var t = document.getElementById("table");
+            var ttx = document.querySelector("table");
+            if (ttx) {
+                ttx.remove();
+            }
+
+            var table = document.createElement("table");
+            table.border = "1";
+
+            var h = document.createElement("tr");
+            var ht = document.createElement("th");
+            ht.textContent = "Titre";
+            var ha = document.createElement("th");
+            ha.textContent = "Auteur";
+            var headerPrix = document.createElement("th");
+            headerPrix.textContent = "Prix"; // Correction ici
+            h.appendChild(ht);
+            h.appendChild(ha);
+            h.appendChild(headerPrix); // Correction ici
+            table.appendChild(h);
+
+            for (var i = 0; i < book.length; i++) {
+                var r = document.createElement("tr");
+                var titre = document.createElement("td");
+                titre.appendChild(document.createTextNode(book[i].titre));
+                r.appendChild(titre);
+                var auteur = document.createElement("td");
+                auteur.appendChild(document.createTextNode(book[i].auteur));
+                r.appendChild(auteur);
+                var prix = document.createElement("td");
+                prix.appendChild(document.createTextNode(book[i].prix));
+                r.appendChild(prix);
+                table.appendChild(r);
+            }
+
+            t.appendChild(table);
+        }
+
+        function supprimer() {
+            var title = prompt("Donner un titre à supprimer :");
+            for (var i = 0; i < book.length; i++) {
+                if (book[i].titre === title) {
+                    book.splice(i, 1); // ysuprimi livre li hachti biha
+                   
+                    break; 
+                }
+            }
+            afficher(); 
+        }
+
+        function modif() {
+            var title = prompt("Titre du livre à modifier :");
+            for (var i = 0; i < book.length; i++) {
+                if (book[i].titre === title) {
+                    var nt = prompt("Nouveau Titre :", book[i].titre);
+                    var na = prompt("Nouvel Auteur :", book[i].auteur);
+                    var np = prompt("Nouveau Prix :", book[i].prix);
+                    
+                    if (nt) book[i].titre = nt;
+                    if (na) book[i].auteur = na;
+                    if (np) book[i].prix = np;
+
+                    
+                    break; 
+                }
+            }
+            afficher();
+        }
+    </script>
+</body>
+</html>
